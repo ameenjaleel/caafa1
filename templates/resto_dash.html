@@ -1,0 +1,16 @@
+{% extends "resto_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="row">
+    <div class='col-sm-6 col-sm-offset-3'>
+      <h1>Add item</h1>
+        <form method="POST" enctype="multipart/form-data" action="" >{% csrf_token %}
+          {{ form|crispy }}
+          <input type="submit" class="btn btn-primary btn-block" value="add item">
+       </form>
+    </div>
+  </div>
+
+
+
+{% endblock %}

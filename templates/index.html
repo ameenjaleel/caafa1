@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if request.user.is_authenticated %}
+      {% for obj in object_list %}
+          <div class="container">
+            <div class="jumbotron">
+              <div class="row">
+                  <div class="col-md-4"><h3>{{ obj.resto_name }}</h3></div>
+                  <div class="col-md-4"><h3>{{ obj.product_name }}</h3></div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                      {% if obj.product_img %}
+                        <img src="{{ obj.product_img.url }}" class="img-thumbnail" height="236" width="304" />
+                      {% endif %}
+                  </div>
+                  <div class="col-md-5"><h4>{{ obj.product_about }}</h4>
+                    <table class="table table-condensed">
+                      <tbody>
+                        <tr>
+                          <td>CUISINES</td>
+                          <td>{{ obj.product_cuisines }}</td>
+                        </tr>
+                        <tr>
+                          <td>COST</td>
+                          <td>{{ obj.product_price }}</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <!--void space on left of order now-->
+                      </div>
+                      <div class="col-md-6">
+                          <button type="button" class="btn btn-success btn-block">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="false"></span> Order Now
+                          </button>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%endfor%}
+
+{% else %}
+  <div class="container-fluid">
+
+
+    <div class="jumbotron">
+    <h1>Hello, world!</h1>
+      <p>...</p>
+      <p><a class="btn btn-primary btn-lg" href="{% url 'registration_register' %}" role="button">SignUp</a></p>
+    </div>
+  </div>
+{%endif%}
+{% endblock%}
